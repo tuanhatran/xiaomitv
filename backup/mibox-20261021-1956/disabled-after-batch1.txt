@@ -1,0 +1,5 @@
+package:net.kidjo.app.android
+package:com.canal.android.canal
+package:com.smarterspro.smartersprotv
+package:fr.francetv.zouzous
+package:com.disney.disneyplus

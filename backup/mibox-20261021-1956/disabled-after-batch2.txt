@@ -1,0 +1,9 @@
+package:com.google.android.apps.mediashell
+package:com.google.android.katniss
+package:net.kidjo.app.android
+package:com.xiaomi.mitv.smartshare
+package:com.canal.android.canal
+package:com.smarterspro.smartersprotv
+package:com.xiaomi.wfdsinkhelperservice
+package:fr.francetv.zouzous
+package:com.disney.disneyplus

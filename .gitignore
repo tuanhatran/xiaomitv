@@ -1,0 +1,43 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+tools/adbkey
+*.pem
+*.key
+*.keystore
+*.jks
+launcher/local.properties
+
+# Android / Gradle build output
+launcher/build/
+launcher/.gradle/
+launcher/app/build/
+.gradle/
+*.apk
+*.aab
+*.dex
+*.class
+*.ap_
+*.aar
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# IDE and OS
+.idea/
+*.iml
+.vscode/
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak

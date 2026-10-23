@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The home widget cards (config.xml widgets): weather, air quality, system and the lunar calendar,
+  bound by Widgets. The row starts gone and only shows when a card is configured. Nothing here is
+  focusable, so D-pad navigation stays on the pills and the grid. Colours default to the resource
+  palette; Widgets repaints the cards from the Config (theme overlay) values.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    android:focusable="false"
+    android:visibility="gone">
+
+    <!-- Weather: the place, the current temperature with its condition, and today's range. -->
+    <LinearLayout
+        android:id="@+id/wWeatherCard"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/wWeatherCity"
+            style="@style/WidgetTitle"
+            android:text="@string/widget_weather" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/wWeatherIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/cond_cloud"
+                android:tint="@color/ink"
+                android:importantForAccessibility="no" />
+
+            <TextView
+                android:id="@+id/wWeatherTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:singleLine="true"
+                android:textColor="@color/ink"
+                android:textSize="28sp"
+                android:fontFamily="@font/outfit_light"
+                android:includeFontPadding="false" />
+
+            <TextView
+                android:id="@+id/wWeatherCond"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/ink_soft"
+                android:textSize="13sp"
+                android:fontFamily="@font/outfit_regular" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/wWeatherRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:singleLine="true"
+            android:textColor="@color/ink_dim"
+            android:textSize="12sp"
+            android:fontFamily="@font/outfit_medium" />
+    </LinearLayout>
+
+    <!-- Air quality: the US AQI in a seal coloured by its band, and the PM2.5 figure. -->
+    <LinearLayout
+        android:id="@+id/wAirCard"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/wAirTitle"
+            style="@style/WidgetTitle"
+            android:text="@string/widget_air" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="56dp"
+                android:layout_height="56dp">
+
+                <View
+                    android:id="@+id/wAirSeal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAccessibility="no" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:importantForAccessibility="no">
+
+                    <TextView
+                        android:id="@+id/wAirAqi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="17sp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:includeFontPadding="false" />
+
+                    <TextView
+                        android:id="@+id/wAirLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textColor="#CCFFFFFF"
+                        android:textSize="8sp"
+                        android:fontFamily="@font/outfit_medium"
+                        android:letterSpacing="0.1"
+                        android:textAllCaps="true"
+                        android:includeFontPadding="false" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/wAirPm25"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/ink_dim"
+                android:textSize="12sp"
+                android:fontFamily="@font/outfit_medium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- System: CPU, memory and storage, each a used figure and a bar. -->
+    <LinearLayout
+        android:id="@+id/wSystemCard"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/wSystemTitle"
+            style="@style/WidgetTitle"
+            android:text="@string/widget_system" />
+
+        <LinearLayout
+            android:id="@+id/wSysCpuRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_cpu"
+                    android:tint="@color/ink_soft"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    style="@style/WidgetRowLabel"
+                    android:text="@string/widget_cpu" />
+
+                <TextView
+                    android:id="@+id/wSysCpu"
+                    style="@style/WidgetRowValue" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/wSysCpuBar"
+                style="@style/WidgetBar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_memory"
+                    android:tint="@color/ink_soft"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    style="@style/WidgetRowLabel"
+                    android:text="@string/widget_memory" />
+
+                <TextView
+                    android:id="@+id/wSysMem"
+                    style="@style/WidgetRowValue" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/wSysMemBar"
+                style="@style/WidgetBar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_storage"
+                    android:tint="@color/ink_soft"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    style="@style/WidgetRowLabel"
+                    android:text="@string/widget_storage" />
+
+                <TextView
+                    android:id="@+id/wSysStore"
+                    style="@style/WidgetRowValue" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/wSysStoreBar"
+                style="@style/WidgetBar" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Lunar calendar: the can chi year, today's lunar date, and the countdown to Christmas. -->
+    <LinearLayout
+        android:id="@+id/wLunarCard"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="18dp"
+        android:focusable="false">
+
+        <TextView
+            android:id="@+id/wLunarTitle"
+            style="@style/WidgetTitle"
+            android:text="@string/widget_lunar" />
+
+        <TextView
+            android:id="@+id/wLunarYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/ink"
+            android:textSize="22sp"
+            android:fontFamily="@font/outfit_light"
+            android:includeFontPadding="false" />
+
+        <TextView
+            android:id="@+id/wLunarDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/ink_soft"
+            android:textSize="14sp"
+            android:fontFamily="@font/outfit_regular" />
+
+        <TextView
+            android:id="@+id/wLunarExtra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/ink_dim"
+            android:textSize="11sp"
+            android:fontFamily="@font/outfit_medium" />
+    </LinearLayout>
+</LinearLayout>
